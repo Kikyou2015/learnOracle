@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.zcw.dao.UserRepository;
 import com.zcw.entity.User;
 
 @RunWith(SpringRunner.class)
@@ -22,6 +23,9 @@ public class OracleConnApplicationTests {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@Test
 	public void contextLoads() {
@@ -47,7 +51,7 @@ public class OracleConnApplicationTests {
 	}
 
 	@Test
-	public void oracleFunction() {
+	public void oracleQueryWithJDBC() {
 		String sql = "select LENGTH(t.UT_NAME) as length from USER_T t where UT_ID = 5";
 		Integer length = jdbcTemplate.queryForObject(sql, Integer.class);
 		logger.info("length = {}", String.valueOf(length));
@@ -61,4 +65,10 @@ public class OracleConnApplicationTests {
 		}
 	}
 
+	@Test
+	public void oracleQueryWithJPA() {
+		User user = userRepository.findByUtId(new Long(4));
+		logger.info(user.toString());
+		userRepository.findAll().forEach(u -> logger.info(u.toString()));
+	}
 }

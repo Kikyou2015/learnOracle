@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "USER_T")
+@Entity
+@Table(name = "USER_T")
 public class User implements Serializable {
 
 	/**
@@ -16,24 +16,27 @@ public class User implements Serializable {
 	 */
 	private static final long serialVersionUID = 8656940771942534240L;
 
-	// @Id
-	// @Column(name = "UT_ID")
+	@Id
+	@Column(name = "UT_ID")
 	private Long utId;
 
 	// @Column(name = "UT_NAME")
 	private String utName;
 
-	// @Column(name = "UT_EMAIL")
+	@Column(name = "UT_EMAIL")
 	private String utEmail;
 
-	// @Column(name = "UT_ADDR")
+	@Column(name = "UT_ADDR")
 	private String utAddr;
 
-	// @Column(name = "UT_GENDER")
+	@Column(name = "UT_GENDER")
 	private short utGender;
 
-	// @Column(name = "UT_ORGID")
+	@Column(name = "UT_ORGID")
 	private String utOrgid;
+
+	public User() {
+	}
 
 	public User(Long utId, String utName, String utEmail, String utAddr, short utGender, String utOrgid) {
 		super();
