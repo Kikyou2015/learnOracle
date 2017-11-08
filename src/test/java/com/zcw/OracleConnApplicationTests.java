@@ -29,7 +29,7 @@ public class OracleConnApplicationTests {
 
 	@Test
 	public void contextLoads() {
-		String sql = "insert into USER_T values(1,'zhangsan','zhangsan@qq.com','wuhan',0,'sanxin')";
+		String sql = "insert into USER_T values(1,'username','zhangsan@qq.com','wuhan',0,'sanxin')";
 		jdbcTemplate.execute(sql);
 	}
 
@@ -47,7 +47,10 @@ public class OracleConnApplicationTests {
 
 	@Test
 	public void inserBatch() {
-
+		String sql = "insert into USER_T values(seq_user.nextval, ?, ?, 'wuhan', 0, 'sanxin')";
+		for (int i = 0; i < 100; i++) {
+			jdbcTemplate.update(sql, "user" + i, "user" + i + "@qq.com");
+		}
 	}
 
 	@Test
