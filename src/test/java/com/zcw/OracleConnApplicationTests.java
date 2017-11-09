@@ -74,4 +74,9 @@ public class OracleConnApplicationTests {
 		logger.info(user.toString());
 		userRepository.findAll().forEach(u -> logger.info(u.toString()));
 	}
+
+	@Test
+	public void ambigousDelete() {
+		userRepository.deleteByUsernameLike("user");
+	}
 }
